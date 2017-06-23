@@ -2,7 +2,7 @@
 R.Data Variables Documentation
 ===============================================================================
 This is an extensive documentation about all the Variables of our Data set.
-For a condensed version see our Share Latex Document or Variables.docs in the
+For a condensed version see our Share Latex Document or Variables.docx in the
 joint document folder on Moodle.
 
 Organizational
@@ -27,7 +27,7 @@ CHILL#              Time spent in switch mode in round # = 1,...,8
 ADDT#               Additional Time measures how long subject takes to switch
                     after solving last sequence in round # = 1,...,8
 OUTPUT#             Output from PROD + CHILL in round # = 1,...,8 measured in
-                    Tk.
+                    Tk. w/o # is total output from rounds 1 to 8
 TIME#ss             Time spent solving sequence ss in round # = 0,...,8
 
 Performance Group
@@ -57,12 +57,21 @@ Descriptives
 
 Hypothesis 1
 °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+OVERTIME#           Difference b/w time solving last sequence in round # = 3,..
+                    .,8 and time solving last sequence in baserate with same te
+                    chnology. (i.e. TIME#last - TIME1last)
 
 Hypothesis 2
 °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
 Hypothesis 3
 °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+INEQU#              Within group inequality in round # = 4,...,8 measured by
+                    Gini coefficient of PROD# over all five group members.
+                    alternatively OUTPUT# instead of PROD#
 
 Hypothesis 4
 °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+RANK#               Rank of subject in round # = 3,...,8 according to OUTPUT#
+                    w/o # is Rank according to OUTPUT
+LAST#               Dummy, 1 if Rank# = 5, 0 o/w.

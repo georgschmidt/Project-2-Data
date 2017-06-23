@@ -24,9 +24,12 @@ load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\De
 p1 <- ggplot2::ggplot(data=D[,c(grep("T1", colnames(D)))], aes("Sequence","time")) 
 p1 + geom_path()   #NEEDS FIXING
 
-## Average 
+## Check Fatigue effects
+#plot PROD1-PROD8|BasicTech and ...|AdvancedTech
 
-geom_path()########****************************************************************########
+## more yet to come
+
+########****************************************************************########
 ########                        HYPOTHESES TESTING                      ########
 ########****************************************************************########
 
@@ -34,17 +37,24 @@ geom_path()########*************************************************************
 ######                 H1: EFFORT HIGHER IN COMPETITION                   ######
 ######--------------------------------------------------------------------######
 
-# H1: More effort is exerted in a competitive setting compared to an individual
-#     to an individual setting.
+# H1: Subjects exert more effort in a competitive setting compared to an 
+#     individual setting.
 
-#Effort measured by number of solved strings.
-#Time spent to solve the last string is longer in competitive
-#stage compared to base rate, where subjects are expected to
-#switch optimally after 10sec or longer.
+# Issue: How to measure Effort??
+#  -) Number of solved strings.
+#  -) Time spent solving the last string
+#      expected to be longer in competitive stage compared to base rate, where
+#      subjects are expected to switch optimally after 10sec or longer.
 # z_Last_i ^(Comp)  >  z_Last^(Base)_i
-#
+
+x <- D[, c(grep("TIME1", colnames(D))), with=0]
+y <- x[1]
+for (i in 1:nrow(x)) {}
+tail(x[x!=0], 1)
+D[, paste0("OVERTIME", i := ] #Creates columns OVERTIME1,...,OVERTIME8
+
 #you can avg this over t=1,2 and t=3-7 (t=8 is special)
-#
+#OVERTIMEAVG <- mean(OVERTIME3-8)
 #avg over all participants, groups
 #
 #INFO - NOINFO einzeln anschauen und die Diffs vergleichen.
@@ -53,43 +63,54 @@ geom_path()########*************************************************************
 #So avg. over A,B,...,E  z_last_i=[3-8] vs. z_last_i=[1,2]
 #will yield only very few observations.
 #non-parametric test. eg Wilcoxon test.
+# Wilcoxon-Mann-Whithney-Test:
+wilcox.test()
 
+######--------------------------------------------------------------------######
+######                    H2: OVER-EXERTION OF EFFORT                     ######
+######--------------------------------------------------------------------######
 
-###----------------------------------------------------------###
-###                         H2: ASDF                         ###
-###----------------------------------------------------------###
-# compare path of INFO and NOINFO.
+# H2: More OVERTIME4-8 in TREAT compared to CONT.
+
 # with INFO higher over exertion starting t=4.
 # following path depends then on closeness. See H2A
 
 
-###..........................................................###
-###H2A: WITHIN GROUP CLOSENESS ON (over exertion of) EFFORT OR PRODUCTION###
-###..........................................................###
+######--------------------------------------------------------------------######
+######         H3: GROUP INEQUALITY ON (over-exertion of) EFFORT          ######
+######--------------------------------------------------------------------######
 
-# compare b/w groups wether groups with higher inequality
-# measured eg. by Gini) exhibit less production and less over
-# exertion of effort
-#
-# we could also compare individual production in t=4 vs. t=6 (if
-# within group inequality changed.)  BUTBUTBUT keep in mind, that
-# over time interdependend obs. AND mind fatigue effects (muss
-# herausrechnen)
+# H3: Subjects put more effort in groups with less inequality.
+
+#i.e. if race is closer, there is stronger competition
+#Test this only on TREAT observations.
+
+#INEQU <- Gini#  ...within group inequality in round # = 4,...,8 over PROD# or OUTPUT#
+
+#   regression: GPROD# = alpha*INEQU# + controls + epsilon
+#     controls: 
+# Expectations: alpha < 0 (i.e. more Inequality leads to lower overall production)
 
 
-###----------------------------------------------------------###
-###      H3: AVG TIME PER STRING increases when INFO         ###
-###----------------------------------------------------------###
+######--------------------------------------------------------------------######
+######              H4: PERCEPTION OF LUCK BY INCOME STATUS               ######
+######--------------------------------------------------------------------######
+
+# H4: Perception of luck depends negatively on overall earnings.
+#     i.e. Subjects with worse performance consider luck more important in
+#          determining overall earnings.
+
+#   regression: LUCK = alpha*PAY + controls + epsilon
+#     controls: RANK, RANK8, (most salient in mind), LAST8 INEQU, INEQU8
+# Expectations: alpha < 0 (worse performers give Luck more importance)
+#               RANK < 0 (-"-, might be additional driver of Luck perception)
+#               LAST > 0 (last place holders consider luck even more important)
+#               INEQU unclear
+
+
+######--------------------------------------------------------------------######
+###      H5: AVG TIME PER STRING increases when INFO         ###
+######--------------------------------------------------------------------######
 
 # avg time needed to solve sequence s, w/ and w/o INFO,
 # cf. Eriksson et al.
-
-
-###----------------------------------------------------------###
-###  H4: Subjects with worse performance consider luck more  ###
-###      important to achieve higher overall earnings.       ###
-###----------------------------------------------------------###
-
-###  Luck = alpha*PROD + epsilon
-###  controls: rank in Round 08. (most salient in mind)
-###  Within group inequality (Round 08 or avg. over comp Stage)
