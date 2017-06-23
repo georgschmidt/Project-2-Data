@@ -24,7 +24,8 @@ load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\De
 p1 <- ggplot2::ggplot(data=D[,c(grep("T1", colnames(D)))], aes("Sequence","time")) 
 p1 + geom_path()   #NEEDS FIXING
 
-## Check Fatigue effects
+## Check Fatigue effects - *** This DOES NOT show Fatigue. It is mainly a strategically different situation across the rounds. Difference in behavior is more likely due to changed stakes***
+
 #plot PROD1-PROD8|BasicTech and ...|AdvancedTech
 
 ## more yet to come: eg. average PROD, time over sequence length, ...
@@ -41,7 +42,7 @@ p1 + geom_path()   #NEEDS FIXING
 #     individual setting.
 
 # Issue: How to measure Effort??
-#  -) Number of solved strings.
+#  -) Number of solved strings. *** This is only a purposeful measure for within subject comparison since ability dependandt*** 
 #  -) Time spent solving the last string
 #      expected to be longer in competitive stage compared to base rate, where
 #      subjects are expected to switch optimally after 10sec or longer.
@@ -70,7 +71,7 @@ wilcox.test()
 ######                    H2: OVER-EXERTION OF EFFORT                     ######
 ######--------------------------------------------------------------------######
 
-# H2: Subjects over-exert effort more, when provided with feedback about
+# H2: Subjects over-exert *** I woul just say "exert". The "over-exert" has not being defined*** effort more, when provided with feedback about
 #     competitors' performances.
 #     i.e. More OVERTIME4-8 in TREAT compared to CONT.
 
