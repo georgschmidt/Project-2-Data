@@ -27,7 +27,7 @@ p1 + geom_path()   #NEEDS FIXING
 ## Check Fatigue effects
 #plot PROD1-PROD8|BasicTech and ...|AdvancedTech
 
-## more yet to come
+## more yet to come: eg. average PROD, time over sequence length, ...
 
 ########****************************************************************########
 ########                        HYPOTHESES TESTING                      ########
@@ -83,9 +83,9 @@ wilcox.test()
 ######--------------------------------------------------------------------######
 
 # H3: Subjects put more effort in groups with less inequality.
+#     i.e. if race is closer, there is stronger competition
 
-#i.e. if race is closer, there is stronger competition
-#Test this only on TREAT observations.
+#Test this using only TREAT observations.
 
 #INEQU <- Gini#  ...within group inequality in round # = 4,...,8 over PROD# or OUTPUT#
 
