@@ -4,7 +4,7 @@
 
 # If you have not already, please install the following packages:
 # install.packages("data.table", "ggplot2")
-library("data.table")
+library(data.table)
 
 #Set working directory: setwd("C:\\...\\Project 2\\Data\\VCEE lab testing yyyy-mm-dd")
 setwd("C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\VCEE lab testing 2017-06-19")

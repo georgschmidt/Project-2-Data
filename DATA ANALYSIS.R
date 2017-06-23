@@ -5,10 +5,11 @@
 # if necessary, please install the following packages:
 # install.packages("data.table")
 # install.packages("ggplot2")
+library(data.table); library(ggplot2)
 
 #Set working directory: setwd("C:\\...\\Project 2\\Data\\VCEE lab testing yyyy-mm-dd")
 setwd("C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\VCEE lab testing 2017-06-19")
-
+#loading D.RData file created in DATA CLEAN-UP: load(file = "C:\\...\\D.RData")
 load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\VCEE lab testing 2017-06-19\\D.RData") 
 
 
@@ -16,8 +17,16 @@ load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\De
 ########                     DESCRIPTIVE STATISTICS                     ########
 ########****************************************************************########
 
+## Check of our RET (Real-effort task)
+#plot TIME#01 - TIME#30 to get a feeling of the production-cost structure.
+#add a 10sec rationality benchmark for TIME1ss and TIME2ss to see how much
+# sub-optimal 'over-production' occured. (something like abline(1:30, 10))
+p1 <- ggplot2::ggplot(data=D[,c(grep("T1", colnames(D)))], aes("Sequence","time")) 
+p1 + geom_path()   #NEEDS FIXING
 
-########****************************************************************########
+## Average 
+
+geom_path()########****************************************************************########
 ########                        HYPOTHESES TESTING                      ########
 ########****************************************************************########
 
