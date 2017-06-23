@@ -70,7 +70,9 @@ wilcox.test()
 ######                    H2: OVER-EXERTION OF EFFORT                     ######
 ######--------------------------------------------------------------------######
 
-# H2: More OVERTIME4-8 in TREAT compared to CONT.
+# H2: Subjects over-exert effort more, when provided with feedback about
+#     competitors' performances.
+#     i.e. More OVERTIME4-8 in TREAT compared to CONT.
 
 # with INFO higher over exertion starting t=4.
 # following path depends then on closeness. See H2A
