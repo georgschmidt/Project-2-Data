@@ -72,6 +72,8 @@ INEQU#              Within group inequality in round # = 4,...,8 measured by
 
 Hypothesis 4
 °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-RANK#               Rank of subject in round # = 3,...,8 according to OUTPUT#
-                    w/o # is Rank according to OUTPUT
+ORANK#              Rank of subject in round # = 0,...,8 according to OUTPUT#
+                    w/o # is overall Rank according to OUTPUT
+PRANK#              Rank of subject in round # = 0,...,8 according to PROD#
+                    w/o # is overall Rank according to PROD
 LAST#               Dummy, 1 if Rank# = 5, 0 o/w.

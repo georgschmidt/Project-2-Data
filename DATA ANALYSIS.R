@@ -5,7 +5,7 @@
 # if necessary, please install the following packages:
 # install.packages("data.table")
 # install.packages("ggplot2")
-library(data.table); library(ggplot2)
+library(data.table); library(ggplot2); library(reshape2)
 
 #Set working directory: setwd("C:\\...\\Project 2\\Data\\VCEE lab testing yyyy-mm-dd")
 setwd("C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\VCEE lab testing 2017-06-19")
@@ -17,12 +17,45 @@ load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\De
 ########                     DESCRIPTIVE STATISTICS                     ########
 ########****************************************************************########
 
-## Check of our RET (Real-effort task)
-#plot TIME#01 - TIME#30 to get a feeling of the production-cost structure.
-#add a 10sec rationality benchmark for TIME1ss and TIME2ss to see how much
-# sub-optimal 'over-production' occured. (something like abline(1:30, 10))
-p1 <- ggplot2::ggplot(data=D[,c(grep("T1", colnames(D)))], aes("Sequence","time")) 
-p1 + geom_path()   #NEEDS FIXING
+### Check of RET #### 
+t1 <- c(grep("TIME1", colnames(D)))
+
+# old version: ugly matplot:
+T1 <- D[, t1, with=F]
+matplot(1:ncol(T1), t(T1), type = "l")
+
+# new version: nice ggplot
+df <- as.data.frame(t(D[, t1, with=F]))   #apparently data.table not so good
+colnames(df) <- paste0("Subject ", 1:ncol(df))
+df_long <- melt(df) #here I use reshape2 package to bring data into long format, better for graphing
+names(df_long)[1:2] <- c("Subjects", "Time")
+df_long$Sequence <- 1:nrow(df)
+
+ggplot(df_long, aes(Sequence, Time, colour = Subjects)) + 
+  geom_line() +
+  geom_abline(slope = 0, intercept = 10, colour = "red")  #individually optimal switching point
+
+
+### Development of Subjects ####
+
+## OUTPUT Development
+o <- c(grep("OUTPUT", colnames(D)))
+o <- o[2:length(o)]
+O <- as.data.frame(t(D[, o, with=F]))
+colnames(O) <- paste0("Subject ", 1:ncol(O))
+O_long <- melt(O)
+names(O_long)[1:2] <- c("Subjects", "Output")
+O_long$Round <- 1:nrow(O)
+ggplot(O_long, aes(Round, Output, color = Subjects)) +
+  geom_line()
+# ORANK (output from counting and switch)
+
+rank(-DD[,TIME101], ties.method = "min")
+
+## PROD Development
+# PRANK (production from counting only)
+
+### More Stuff ####
 
 ## Check Fatigue effects
 #plot PROD1-PROD8|BasicTech and ...|AdvancedTech

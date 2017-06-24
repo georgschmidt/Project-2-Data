@@ -48,5 +48,5 @@ D[, c(grep("subsession.round_number", colnames(D))):=NULL]
 
 
 #FINAL DO NOT TOUCH R.Data
-fix(D)
+#fix(D)
 save(D, file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\VCEE lab testing 2017-06-19\\D.RData") 
