@@ -107,6 +107,8 @@ ggplot(PR_long, aes(Round, Production_Rank, color = Subjects)) +
 #      expected to be longer in competitive stage compared to base rate, where
 #      subjects are expected to switch optimally after 10sec or longer.
 # z_Last_i ^(Comp)  >  z_Last^(Base)_i
+# Number of solved strings 
+
 
 x <- D[, c(grep("TIME1", colnames(D))), with=0]
 y <- x[1]
@@ -131,9 +133,15 @@ wilcox.test()
 ######                    H2: OVER-EXERTION OF EFFORT                     ######
 ######--------------------------------------------------------------------######
 
-# H2: Subjects over-exert effort more, when provided with feedback about
+# H2: Subjects exert more effort more, when provided with feedback about
 #     competitors' performances.
+# H2a: Groups produce more when subjects are provided with feedback about 
+#      competitors' performances.
+#      -Test by
+
 #     i.e. More OVERTIME4-8 in TREAT compared to CONT.
+# same effort measure as used for H1.
+
 
 # with INFO higher over exertion starting t=4.
 # following path depends then on closeness. See H2A
@@ -143,7 +151,7 @@ wilcox.test()
 ######         H3: GROUP INEQUALITY ON (over-exertion of) EFFORT          ######
 ######--------------------------------------------------------------------######
 
-# H3: Subjects put more effort in groups with less inequality.
+# H3: Subjects exert more effort in groups with less inequality.
 #     i.e. if race is closer, there is stronger competition
 
 #Test this using only TREAT observations.
@@ -164,7 +172,7 @@ wilcox.test()
 #          determining overall earnings.
 
 #   regression: LUCK = alpha*PAY + controls + epsilon
-#     controls: RANK, RANK8, (most salient in mind), LAST8 INEQU, INEQU8
+#     controls: RANK, RANK8, (most salient in mind), LAST8, INEQU, INEQU8
 # Expectations: alpha < 0 (worse performers give Luck more importance)
 #               RANK < 0 (-"-, might be additional driver of Luck perception)
 #               LAST > 0 (last place holders consider luck even more important)
