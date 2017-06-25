@@ -21,8 +21,8 @@ load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\De
 t1 <- c(grep("TIME1", colnames(D)))
 
 # old version: ugly matplot:
-T1 <- D[, t1, with=F]
-matplot(1:ncol(T1), t(T1), type = "l")
+# T1 <- D[, t1, with=F]
+# matplot(1:ncol(T1), t(T1), type = "l")
 
 # new version: nice ggplot
 df <- as.data.frame(t(D[, t1, with=F]))   #apparently data.table not so good
@@ -47,13 +47,41 @@ O_long <- melt(O)
 names(O_long)[1:2] <- c("Subjects", "Output")
 O_long$Round <- 1:nrow(O)
 ggplot(O_long, aes(Round, Output, color = Subjects)) +
-  geom_line()
-# ORANK (output from counting and switch)
-
-rank(-DD[,TIME101], ties.method = "min")
+  geom_line() +
+  geom_vline(xintercept = 2.5, color = "red")
+# ORANK (Rank resulting from counting and switch earnings)
+OR <- O
+for (i in 1:8) {OR[i,] <- rank(-OR[i,], ties.method = "min")}
+rownames(OR) <- paste0("ORANK", 1:nrow(OR))
+OR_long <- melt(OR)
+names(OR_long)[1:2] <- c("Subjects", "Output_Rank")
+OR_long$Round <- 1:nrow(OR)
+ggplot(OR_long, aes(Round, Output_Rank, color = Subjects)) +
+  geom_line() +
+  geom_vline(xintercept = 2.5, color = "red")
 
 ## PROD Development
-# PRANK (production from counting only)
+p <- c(grep("^PROD", colnames(D)))  #^ is to omit GPROD
+p <- p[3:length(p)]  #get rid of PROD (total) and PROD0 (trial)
+P <- as.data.frame(t(D[, p, with=F]))
+colnames(P) <- paste0("Subject ", 1:ncol(P))
+P_long <- melt(P)
+names(P_long)[1:2] <- c("Subjects", "Production")
+P_long$Round <- 1:nrow(P)
+ggplot(P_long, aes(Round, Production, color = Subjects)) +
+  geom_line() +
+  geom_vline(xintercept = 2.5, color = "red")
+# PRANK (rank resulting from counting only)
+# ORANK (Rank resulting from counting and switch earnings)
+PR <- P
+for (i in 1:8) {PR[i,] <- rank(-PR[i,], ties.method = "min")}
+rownames(PR) <- paste0("PRANK", 1:nrow(PR))
+PR_long <- melt(PR)
+names(PR_long)[1:2] <- c("Subjects", "Production_Rank")
+PR_long$Round <- 1:nrow(PR)
+ggplot(PR_long, aes(Round, Production_Rank, color = Subjects)) +
+  geom_line() +
+  geom_vline(xintercept = 2.5, color = "red")
 
 ### More Stuff ####
 
