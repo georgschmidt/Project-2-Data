@@ -14,6 +14,7 @@ LABEL               Takes values A,B,C,D or E, character form om G.ID
 CODE                Unique identification code
 SCODE               Session Code
 TREAT               Treatment Status (cont or treat)
+TECH#                Dummy, 1 if advanced
 
 
 Performance Individual
@@ -47,8 +48,10 @@ Questionnaire
 -------------------------------------------------------------------------------
 LUCK                Belief about how important luck was in achieving high
                     overall earnings. 0 = not at all, 10 = exclusively
+EFFORT              Belief about how important effort was in achieving high
+                    overall earnings. 0 = not at all, 10 = exclusively
 SKILL               Belief about how important skill was in achieving high
-                    overall earning. 0 = not at all, 10 = exclusively
+                    overall earnings. 0 = not at all, 10 = exclusively
 
 
 Descriptives

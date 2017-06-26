@@ -130,13 +130,14 @@ D[, paste0("OVERTIME", i := ] #Creates columns OVERTIME1,...,OVERTIME8
 wilcox.test()
 
 ######--------------------------------------------------------------------######
-######                    H2: OVER-EXERTION OF EFFORT                     ######
+######                  H2:MORE PRODUCTION IN TREATMENT                   ######
 ######--------------------------------------------------------------------######
 
 # H2: Subjects exert more effort more, when provided with feedback about
 #     competitors' performances.
 # H2a: Groups produce more when subjects are provided with feedback about 
 #      competitors' performances.
+#      - if no effect, than the more is ~N
 #      -Test by
 
 #     i.e. More OVERTIME4-8 in TREAT compared to CONT.
@@ -148,10 +149,10 @@ wilcox.test()
 
 
 ######--------------------------------------------------------------------######
-######         H3: GROUP INEQUALITY ON (over-exertion of) EFFORT          ######
+######          H3: GROUP INEQUALITY ON (over-exertion of) PROD           ######
 ######--------------------------------------------------------------------######
 
-# H3: Subjects exert more effort in groups with less inequality.
+# H3: Group production is higher in groups with less inequality.
 #     i.e. if race is closer, there is stronger competition
 
 #Test this using only TREAT observations.
