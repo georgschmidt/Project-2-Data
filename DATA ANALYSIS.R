@@ -8,9 +8,9 @@
 library(data.table); library(ggplot2); library(reshape2)
 
 #Set working directory: setwd("C:\\...\\Project 2\\Data\\VCEE lab testing yyyy-mm-dd")
-setwd("C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\VCEE lab testing 2017-06-19")
+setwd("C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\Project-2-Data")
 #loading D.RData file created in DATA CLEAN-UP: load(file = "C:\\...\\D.RData")
-load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\VCEE lab testing 2017-06-19\\D.RData") 
+load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\Designing and Implementing an Economic Experiment\\Moodle\\Project 2\\Data\\Project-2-Data\\D.RData") 
 
 
 ########****************************************************************########
@@ -19,21 +19,25 @@ load(file = "C:\\Users\\Georg\\OneDrive\\Studium\\VWL-Master curr 2013\\17 S\\De
 
 ### Check of RET #### 
 t1 <- c(grep("TIME1", colnames(D)))
+t2 <- c(grep("TIME2", colnames(D)))
+
 
 # old version: ugly matplot:
 # T1 <- D[, t1, with=F]
 # matplot(1:ncol(T1), t(T1), type = "l")
 
 # new version: nice ggplot
-df <- as.data.frame(t(D[, t1, with=F]))   #apparently data.table not so good
-colnames(df) <- paste0("Subject ", 1:ncol(df))
-df_long <- melt(df) #here I use reshape2 package to bring data into long format, better for graphing
-names(df_long)[1:2] <- c("Subjects", "Time")
-df_long$Sequence <- 1:nrow(df)
+df2 <- as.data.frame(t(D[, t2, with=F]))   #apparently data.table not so good
+colnames(df2) <- paste0("Subject ", 1:ncol(df2))
+df2_long <- melt(df2) #here I use reshape2 package to bring data into long format, better for graphing
+names(df2_long)[1:2] <- c("Subjects", "Time")
+df2_long$Sequence <- 1:nrow(df2)
 
-ggplot(df_long, aes(Sequence, Time, colour = Subjects)) + 
+ggplot(df1_long, aes(Sequence, Time, colour = Subjects)) + 
   geom_line() +
-  geom_abline(slope = 0, intercept = 10, colour = "red")  #individually optimal switching point
+  ggtitle("Basic Technology") +
+  coord_cartesian(ylim=c(0,25)) +
+  geom_abline(slope = 0, intercept = 10, colour = "red", size=1)  #individually optimal switching point
 
 
 ### Development of Subjects ####
@@ -61,9 +65,9 @@ ggplot(OR_long, aes(Round, Output_Rank, color = Subjects)) +
   geom_vline(xintercept = 2.5, color = "red")
 
 ## PROD Development
-p <- c(grep("^PROD", colnames(D)))  #^ is to omit GPROD
+p <- c(grep("^PROD", colnames(D_cont)))  #^ is to omit GPROD
 p <- p[3:length(p)]  #get rid of PROD (total) and PROD0 (trial)
-P <- as.data.frame(t(D[, p, with=F]))
+P <- as.data.frame(t(D_cont[, p, with=F]))
 colnames(P) <- paste0("Subject ", 1:ncol(P))
 P_long <- melt(P)
 names(P_long)[1:2] <- c("Subjects", "Production")
@@ -81,6 +85,7 @@ names(PR_long)[1:2] <- c("Subjects", "Production_Rank")
 PR_long$Round <- 1:nrow(PR)
 ggplot(PR_long, aes(Round, Production_Rank, color = Subjects)) +
   geom_line() +
+  ggtitle("Production Ranking Control Group") +
   geom_vline(xintercept = 2.5, color = "red")
 
 ### More Stuff ####
